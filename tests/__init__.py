@@ -34,6 +34,21 @@ class Validador:
     def es_valida(self, clave: str) -> bool:
         return self.regla.es_valida(clave)
 
+class ReglaValidacionGanimedes(ReglaValidacion):
+    def __init__(self):
+        pass
+
+    def contiene_caracter_especial(self, clave: str) -> bool:
+        cont = 0
+        c_especial = "@_#$%"
+        for caracter in clave:
+            if caracter in c_especial:
+                cont += 1
+
+        if cont >= 1:
+            return True
+        else:
+            return False
 
 
 
