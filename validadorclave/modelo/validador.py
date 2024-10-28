@@ -62,19 +62,19 @@ class ReglaValidacionGanimedes(ReglaValidacion):
 
     def es_valida(self, clave: str) -> bool:
         if not self._validar_longitud(clave):
-            raise NoCumpleLongitudMinimaError()
+            raise NoCumpleLongitudMinimaError(f"La clave debe tener una longitud de más de {self._longitud_esperada} caracteres")
 
         if not self._contiene_mayuscula(clave):
-            raise NoTieneLetraMayusculaError()
+            raise NoTieneLetraMayusculaError("La clave debe tener al menos una letra mayúscula")
 
         if not self._contiene_minuscula(clave):
-            raise NoTieneLetraMinusculaError()
+            raise NoTieneLetraMinusculaError("La clave debe tener al menos una letra minúscula")
 
         if not self._contiene_numero(clave):
-            raise NoTieneNumeroError()
+            raise NoTieneNumeroError("La clave debe tener al menos un número")
 
         if not self.contiene_caracter_especial(clave):
-            raise NoTieneCaracterEspecialError()
+            raise NoTieneCaracterEspecialError("la clave debe tener al menos un caracter especial (@, _, #, $ o %)")
 
         return True
 
@@ -114,13 +114,13 @@ class ReglaValidacionCalisto(ReglaValidacion):
 
     def es_valida(self, clave: str) -> bool:
         if not self._validar_longitud(clave):
-            raise NoCumpleLongitudMinimaError()
+            raise NoCumpleLongitudMinimaError(f"La clave debe tener una longitud de más de {self._longitud_esperada} caracteres")
 
         if not self._contiene_numero(clave):
-            raise NoTieneNumeroError()
+            raise NoTieneNumeroError("La clave debe tener al menos un número")
 
         if not self.contiene_calisto(clave):
-            raise NoTienePalabraSecretaError()
+            raise NoTienePalabraSecretaError("La clave debe tener contener la palabra secreta con al menos dos mayúsculas, pero no todas")
 
         return True
 
